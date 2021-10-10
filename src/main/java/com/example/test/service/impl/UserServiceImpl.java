@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
                 MultipartFile fileData = uploadForm.getFileData();
                 if(fileData.getContentType().equals("image/jpeg") || fileData.getContentType().equals("image/png") || fileData.getContentType().equals("image/jpg") || fileData.getContentType().equals("image/bmp")){
                     String nameFile =randomString.genString()+ System.nanoTime() + "-" + uploadForm.getFileData().getOriginalFilename()  ;
-                    File serverFile = new File("D:\\images/" + nameFile);
+                    File serverFile = new File("C:\\images/" + nameFile);
                     BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                     stream.write(uploadForm.getFileData().getBytes());
                     stream.close();
@@ -88,13 +88,13 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id);
         if(fileData.getContentType().equals("image/jpeg") || fileData.getContentType().equals("image/png") || fileData.getContentType().equals("image/jpg") || fileData.getContentType().equals("image/bmp")){
             String nameFile =randomString.genString()+ System.nanoTime() + "-" + fileData.getOriginalFilename()  ;
-            File serverFile = new File("D:\\images/" + nameFile);
+            File serverFile = new File("C:\\images/" + nameFile);
             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
             stream.write(fileData.getBytes());
             stream.close();
             BufferedImage img = ImageIO.read(serverFile);
             if(img.getHeight() == 512 && img.getWidth() == 512){
-                File serverFileDel = new File("D:\\images/" + user.getEmoji());
+                File serverFileDel = new File("C:\\images/" + user.getEmoji());
                 serverFileDel.delete();
                 user.setEmoji(nameFile);
                 userRepository.save(user);
@@ -124,7 +124,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String deleteUser(String id) {
         User user = userRepository.findById(id);
-        File serverFileDel = new File("D:\\images/" + user.getEmoji());
+        File serverFileDel = new File("C:\\images/" + user.getEmoji());
         serverFileDel.delete();
         userRepository.delete(user);
         return " successful delete";
