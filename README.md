@@ -15,8 +15,8 @@ API Login
 URL POST : http://103.130.213.182:8080/login
 Body:
   {
-    "name":"ducak",
-    "pass":"duca6Aa@"
+    "name":"input data",
+    "pass":"input data"
   }
   
 
